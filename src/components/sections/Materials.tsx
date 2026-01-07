@@ -34,29 +34,29 @@ const materials = [
 
 export function Materials() {
   return (
-    <section className="py-24 lg:py-32 bg-cream overflow-hidden">
-      <div className="container mx-auto px-6 lg:px-12">
+    <section className="py-16 sm:py-20 lg:py-32 bg-cream overflow-hidden">
+      <div className="container mx-auto px-5 sm:px-6 lg:px-12">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <span className="inline-block text-gold text-sm tracking-[0.3em] uppercase mb-4">
+          <span className="inline-block text-gold text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4">
             Ons Assortiment
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-stone mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-stone mb-3 sm:mb-4">
             Onze Materialen
           </h2>
-          <p className="text-stone-light max-w-2xl mx-auto">
+          <p className="text-stone-light text-sm sm:text-base max-w-2xl mx-auto">
             Ontdek het materiaal dat perfect bij uw project past.
           </p>
         </motion.div>
 
-        {/* Materials Grid - Asymmetric */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        {/* Materials Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {materials.map((material, index) => (
             <motion.div
               key={material.title}
@@ -64,30 +64,30 @@ export function Materials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: index * 0.15 }}
-              className={index === 1 ? "lg:-mt-12" : ""}
+              className={index === 1 ? "lg:-mt-8" : ""}
             >
               <Link href={material.href} className="group block">
                 {/* Image Container with unique shape */}
-                <div className="relative mb-6">
-                  {/* Background shadow shape */}
-                  <div className={`absolute inset-0 ${material.color} rounded-3xl translate-x-3 translate-y-3 opacity-20`} />
+                <div className="relative mb-4 sm:mb-6">
+                  {/* Background shadow shape - hidden on mobile */}
+                  <div className={`hidden sm:block absolute inset-0 ${material.color} rounded-2xl sm:rounded-3xl translate-x-2 sm:translate-x-3 translate-y-2 sm:translate-y-3 opacity-20`} />
 
                   {/* Image */}
-                  <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl">
+                  <div className="relative aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl">
                     <Image
                       src={material.image}
                       alt={material.title}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
 
                     {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
 
                     {/* Tag */}
-                    <div className="absolute top-4 left-4">
-                      <span className={`inline-block px-4 py-2 ${material.color} text-white text-xs uppercase tracking-wider rounded-full`}>
+                    <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
+                      <span className={`inline-block px-3 sm:px-4 py-1.5 sm:py-2 ${material.color} text-white text-[10px] sm:text-xs uppercase tracking-wider rounded-full`}>
                         {material.subtitle}
                       </span>
                     </div>
@@ -95,17 +95,17 @@ export function Materials() {
                 </div>
 
                 {/* Content */}
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex items-start justify-between gap-3 sm:gap-4">
                   <div>
-                    <h3 className="text-2xl font-serif text-stone mb-2 group-hover:text-gold transition-colors">
+                    <h3 className="text-xl sm:text-2xl font-serif text-stone mb-1 sm:mb-2 group-hover:text-gold transition-colors">
                       {material.title}
                     </h3>
-                    <p className="text-stone-light text-sm">
+                    <p className="text-stone-light text-xs sm:text-sm">
                       {material.description}
                     </p>
                   </div>
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full border-2 border-stone/20 flex items-center justify-center group-hover:bg-gold group-hover:border-gold transition-all duration-300">
-                    <ArrowRight className="w-5 h-5 text-stone group-hover:text-white transition-colors" />
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-stone/20 flex items-center justify-center group-hover:bg-gold group-hover:border-gold transition-all duration-300">
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-stone group-hover:text-white transition-colors" />
                   </div>
                 </div>
               </Link>

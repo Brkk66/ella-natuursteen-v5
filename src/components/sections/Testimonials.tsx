@@ -8,19 +8,19 @@ const testimonials = [
     name: "Familie De Vries",
     location: "Rotterdam",
     rating: 5,
-    text: "Fantastische ervaring van begin tot eind. Het marmeren keukenblad is prachtig geworden en de plaatsing was zeer professioneel. Echt vakwerk!",
+    text: "Fantastische ervaring! Het marmeren keukenblad is prachtig geworden en de plaatsing was zeer professioneel.",
   },
   {
     name: "M. Jansen",
     location: "Den Haag",
     rating: 5,
-    text: "Ella Natuursteen heeft onze badkamer volledig getransformeerd. De persoonlijke aanpak en het oog voor detail maken echt het verschil.",
+    text: "Ella Natuursteen heeft onze badkamer volledig getransformeerd. De persoonlijke aanpak maakt echt het verschil.",
   },
   {
     name: "R. & T. Bakker",
     location: "Leiden",
     rating: 5,
-    text: "Uitstekend advies gekregen over de verschillende steensoorten. De kwaliteit van het graniet en de afwerking overtreffen onze verwachtingen.",
+    text: "Uitstekend advies over de verschillende steensoorten. De kwaliteit en afwerking overtreffen onze verwachtingen.",
   },
 ];
 
@@ -48,23 +48,23 @@ const itemVariants = {
 
 export function Testimonials() {
   return (
-    <section className="py-24 lg:py-32 bg-sand">
-      <div className="container mx-auto px-6 lg:px-12">
+    <section className="py-16 sm:py-20 lg:py-32 bg-sand">
+      <div className="container mx-auto px-5 sm:px-6 lg:px-12">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <span className="inline-block text-gold text-sm tracking-[0.3em] uppercase mb-4">
+          <span className="inline-block text-gold text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4">
             Tevreden Klanten
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-stone mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-stone mb-3 sm:mb-4">
             Wat Klanten Zeggen
           </h2>
-          <p className="text-stone-light max-w-2xl mx-auto">
+          <p className="text-stone-light text-sm sm:text-base max-w-2xl mx-auto">
             Ontdek waarom onze klanten voor Ella Natuursteen kiezen.
           </p>
         </motion.div>
@@ -74,37 +74,37 @@ export function Testimonials() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-3 gap-8"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
         >
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
-              className="bg-white p-8 shadow-sm hover:shadow-md transition-shadow duration-300"
+              className="bg-white p-5 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               {/* Quote Icon */}
-              <Quote className="w-8 h-8 text-gold/30 mb-4" />
+              <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-gold/30 mb-3 sm:mb-4" />
 
               {/* Stars */}
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-0.5 sm:gap-1 mb-3 sm:mb-4">
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
                   <Star
                     key={i}
-                    className="w-4 h-4 fill-gold text-gold"
+                    className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-gold text-gold"
                   />
                 ))}
               </div>
 
               {/* Text */}
-              <p className="text-stone-light leading-relaxed mb-6">
+              <p className="text-stone-light text-sm sm:text-base leading-relaxed mb-4 sm:mb-6">
                 &ldquo;{testimonial.text}&rdquo;
               </p>
 
               {/* Author */}
               <div>
-                <p className="font-medium text-stone">{testimonial.name}</p>
-                <p className="text-sm text-stone-light">{testimonial.location}</p>
+                <p className="font-medium text-stone text-sm sm:text-base">{testimonial.name}</p>
+                <p className="text-xs sm:text-sm text-stone-light">{testimonial.location}</p>
               </div>
             </motion.div>
           ))}

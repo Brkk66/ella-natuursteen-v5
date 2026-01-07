@@ -39,8 +39,8 @@ export function Navbar() {
             : "bg-transparent"
         }`}
       >
-        <nav className="container mx-auto px-6 lg:px-12">
-          <div className="flex items-center justify-between h-20 lg:h-24">
+        <nav className="container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="flex items-center justify-between h-16 sm:h-20 lg:h-24">
             {/* Logo */}
             <Link href="/" className="relative z-10">
               <motion.div
@@ -48,14 +48,14 @@ export function Navbar() {
                 className="flex flex-col"
               >
                 <span
-                  className={`text-2xl lg:text-3xl font-serif tracking-wide transition-colors duration-500 ${
+                  className={`text-xl sm:text-2xl lg:text-3xl font-serif tracking-wide transition-colors duration-500 ${
                     isScrolled ? "text-stone" : "text-white"
                   }`}
                 >
                   Ella
                 </span>
                 <span
-                  className={`text-xs lg:text-sm tracking-[0.3em] uppercase transition-colors duration-500 ${
+                  className={`text-[10px] sm:text-xs lg:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase transition-colors duration-500 ${
                     isScrolled ? "text-stone-light" : "text-white/80"
                   }`}
                 >
@@ -136,20 +136,20 @@ export function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="absolute right-0 top-0 h-full w-[80%] max-w-sm bg-white shadow-2xl"
+              className="absolute right-0 top-0 h-full w-[85%] max-w-sm bg-white shadow-2xl"
             >
-              <div className="flex flex-col pt-24 px-8">
+              <div className="flex flex-col pt-20 sm:pt-24 px-6 sm:px-8">
                 {navLinks.map((link, index) => (
                   <motion.div
                     key={link.href}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
+                    transition={{ delay: index * 0.08 }}
                   >
                     <Link
                       href={link.href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block py-4 text-lg text-stone border-b border-sand-dark hover:text-gold transition-colors"
+                      className="block py-3 sm:py-4 text-base sm:text-lg text-stone border-b border-sand-dark hover:text-gold transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -158,13 +158,13 @@ export function Navbar() {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  className="mt-8"
+                  transition={{ delay: 0.5 }}
+                  className="mt-6 sm:mt-8"
                 >
                   <Link
                     href="/contact"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center justify-center gap-2 w-full py-4 bg-stone text-white text-center hover:bg-stone-light transition-colors"
+                    className="flex items-center justify-center gap-2 w-full py-3.5 sm:py-4 bg-stone text-white text-sm sm:text-base text-center hover:bg-stone-light transition-colors rounded-lg"
                   >
                     <Phone className="w-4 h-4" />
                     Bel ons

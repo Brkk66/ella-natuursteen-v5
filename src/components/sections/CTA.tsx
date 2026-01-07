@@ -7,24 +7,24 @@ import { MapPin, Phone, Calendar } from "lucide-react";
 const contactOptions = [
   {
     icon: MapPin,
-    title: "Bezoek onze showroom",
-    description: "Bekijk onze collectie en laat u inspireren",
+    title: "Bezoek showroom",
+    description: "Bekijk onze collectie",
   },
   {
     icon: Phone,
     title: "Bel voor advies",
-    description: "Vrijblijvend telefonisch advies op maat",
+    description: "Vrijblijvend advies",
   },
   {
     icon: Calendar,
-    title: "Afspraak op locatie",
-    description: "Wij komen graag bij u langs voor een opmeting",
+    title: "Op locatie",
+    description: "Wij komen bij u langs",
   },
 ];
 
 export function CTA() {
   return (
-    <section className="py-24 lg:py-32 bg-stone relative overflow-hidden">
+    <section className="py-16 sm:py-20 lg:py-32 bg-stone relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -35,26 +35,25 @@ export function CTA() {
         />
       </div>
 
-      <div className="container mx-auto px-6 lg:px-12 relative">
+      <div className="container mx-auto px-5 sm:px-6 lg:px-12 relative">
         <div className="max-w-4xl mx-auto text-center">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block text-gold text-sm tracking-[0.3em] uppercase mb-4">
+            <span className="inline-block text-gold text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4">
               Neem Contact Op
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-white mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-white mb-4 sm:mb-6 leading-tight">
               Klaar om uw project
               <br />
               <span className="text-gold">te bespreken?</span>
             </h2>
-            <p className="text-white/70 max-w-2xl mx-auto mb-12">
-              Plan een afspraak of vraag vrijblijvend advies aan. Wij helpen u
-              graag bij het vinden van de perfecte steen voor uw project.
+            <p className="text-white/70 text-sm sm:text-base max-w-2xl mx-auto mb-8 sm:mb-12">
+              Plan een afspraak of vraag vrijblijvend advies aan.
             </p>
           </motion.div>
 
@@ -62,18 +61,18 @@ export function CTA() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid md:grid-cols-3 gap-6 mb-12"
+            className="grid grid-cols-3 gap-3 sm:gap-6 mb-8 sm:mb-12"
           >
             {contactOptions.map((option, index) => (
               <div
                 key={index}
-                className="p-6 bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-300"
+                className="p-3 sm:p-5 lg:p-6 bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl hover:bg-white/10 transition-colors duration-300"
               >
-                <option.icon className="w-8 h-8 text-gold mx-auto mb-4" />
-                <h3 className="text-white font-medium mb-2">{option.title}</h3>
-                <p className="text-white/60 text-sm">{option.description}</p>
+                <option.icon className="w-6 h-6 sm:w-8 sm:h-8 text-gold mx-auto mb-2 sm:mb-4" />
+                <h3 className="text-white font-medium text-xs sm:text-sm lg:text-base mb-1 sm:mb-2">{option.title}</h3>
+                <p className="text-white/60 text-[10px] sm:text-xs lg:text-sm hidden sm:block">{option.description}</p>
               </div>
             ))}
           </motion.div>
@@ -82,12 +81,12 @@ export function CTA() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-10 py-5 bg-gold text-white text-sm tracking-wide hover:bg-gold-dark transition-all duration-300"
+              className="inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 bg-gold text-white text-sm tracking-wide hover:bg-gold-dark transition-all duration-300 rounded-full"
             >
               Plan een afspraak
             </Link>

@@ -23,7 +23,7 @@ export function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen w-full overflow-hidden bg-sand">
+    <section ref={containerRef} className="relative min-h-[100svh] w-full overflow-hidden bg-sand">
       {/* Background Image with Parallax */}
       <motion.div style={{ y }} className="absolute inset-0">
         <Image
@@ -34,13 +34,13 @@ export function Hero() {
           className="object-cover"
           sizes="100vw"
         />
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+        {/* Overlay - stronger on mobile for readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40 md:from-black/70 md:via-black/50 md:to-transparent" />
       </motion.div>
 
       {/* Content */}
-      <motion.div style={{ opacity }} className="relative h-screen flex items-center">
-        <div className="container mx-auto px-6 lg:px-12">
+      <motion.div style={{ opacity }} className="relative min-h-[100svh] flex items-center pt-20 pb-32 md:pt-24 md:pb-24">
+        <div className="container mx-auto px-5 sm:px-6 lg:px-12">
           <div className="max-w-2xl">
             {/* Subtitle */}
             <motion.div
@@ -48,7 +48,7 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="inline-block text-gold text-sm lg:text-base tracking-[0.3em] uppercase mb-6">
+              <span className="inline-block text-gold text-xs sm:text-sm lg:text-base tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-4 sm:mb-6">
                 Sinds 1994
               </span>
             </motion.div>
@@ -58,7 +58,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-4xl md:text-5xl lg:text-7xl text-white font-serif leading-[1.1] mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-white font-serif leading-[1.1] mb-4 sm:mb-6"
             >
               Ella Natuursteen
               <br />
@@ -70,7 +70,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-lg md:text-xl text-white/80 mb-8 max-w-lg leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-white/80 mb-6 sm:mb-8 max-w-lg leading-relaxed"
             >
               Waar uw droominterieur werkelijkheid wordt.
               Van marmer tot graniet — exclusief voor u vervaardigd.
@@ -81,18 +81,18 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 mb-12"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-12"
             >
               <Link
                 href="/contact"
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gold text-white text-sm tracking-wide hover:bg-gold-dark transition-all duration-300 rounded-full"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 bg-gold text-white text-sm tracking-wide hover:bg-gold-dark transition-all duration-300 rounded-full"
               >
                 Maak een afspraak
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/projecten"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-sm text-white text-sm tracking-wide border border-white/30 hover:bg-white hover:text-stone transition-all duration-300 rounded-full"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 bg-white/10 backdrop-blur-sm text-white text-sm tracking-wide border border-white/30 hover:bg-white hover:text-stone transition-all duration-300 rounded-full"
               >
                 Bekijk onze projecten
               </Link>
@@ -108,14 +108,14 @@ export function Hero() {
         transition={{ duration: 0.8, delay: 1 }}
         className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md"
       >
-        <div className="container mx-auto px-6 lg:px-12 py-5">
-          <div className="flex flex-wrap justify-center gap-8 lg:gap-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12 py-4 sm:py-5">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-3 sm:gap-8 lg:gap-16">
             {usps.map((usp, index) => (
-              <div key={index} className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center">
-                  <Check className="w-3.5 h-3.5 text-gold" />
+              <div key={index} className="flex items-center gap-2 sm:gap-3">
+                <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gold/10 flex items-center justify-center">
+                  <Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-gold" />
                 </div>
-                <span className="text-stone text-sm font-medium">{usp}</span>
+                <span className="text-stone text-xs sm:text-sm font-medium">{usp}</span>
               </div>
             ))}
           </div>
