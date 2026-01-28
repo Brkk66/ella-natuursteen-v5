@@ -1,27 +1,36 @@
+import dynamic from "next/dynamic";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { Intro } from "@/components/sections/Intro";
-import { Services } from "@/components/sections/Services";
-import { Projects } from "@/components/sections/Projects";
-import { FeaturedProject } from "@/components/sections/FeaturedProject";
-import { WhyUs } from "@/components/sections/WhyUs";
-import { Materials } from "@/components/sections/Materials";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { CTA } from "@/components/sections/CTA";
 import { getHomepage } from "../../sanity/lib/queries";
 import { urlFor } from "../../sanity/lib/client";
 
+// Lazy load below-the-fold components
+const Services = dynamic(() => import("@/components/sections/Services").then(mod => ({ default: mod.Services })), {
+  loading: () => <div className="py-32 bg-cream" />,
+});
+const Projects = dynamic(() => import("@/components/sections/Projects").then(mod => ({ default: mod.Projects })), {
+  loading: () => <div className="py-32 bg-sand" />,
+});
+const FeaturedProject = dynamic(() => import("@/components/sections/FeaturedProject").then(mod => ({ default: mod.FeaturedProject })), {
+  loading: () => <div className="py-32 bg-stone" />,
+});
+const Materials = dynamic(() => import("@/components/sections/Materials").then(mod => ({ default: mod.Materials })), {
+  loading: () => <div className="py-32 bg-cream" />,
+});
+const WhyUs = dynamic(() => import("@/components/sections/WhyUs").then(mod => ({ default: mod.WhyUs })), {
+  loading: () => <div className="py-32 bg-sand" />,
+});
+const Testimonials = dynamic(() => import("@/components/sections/Testimonials").then(mod => ({ default: mod.Testimonials })), {
+  loading: () => <div className="py-32 bg-sand" />,
+});
+const CTA = dynamic(() => import("@/components/sections/CTA").then(mod => ({ default: mod.CTA })), {
+  loading: () => <div className="py-32 bg-stone" />,
+});
+
 export default async function Home() {
   const data = await getHomepage();
-
-  // Helper to get image URL from Sanity or fallback
-  const getImageUrl = (sanityImage: any, fallback: string) => {
-    if (sanityImage) {
-      return urlFor(sanityImage).url();
-    }
-    return fallback;
-  };
 
   return (
     <>

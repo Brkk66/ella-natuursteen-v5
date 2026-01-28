@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Lato } from "next/font/google";
 import "./globals.css";
 import { OrganizationSchema, WebsiteSchema } from "@/components/StructuredData";
@@ -7,6 +7,7 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
 });
 
 const lato = Lato({
@@ -14,7 +15,15 @@ const lato = Lato({
   subsets: ["latin"],
   weight: ["300", "400", "700"],
   display: "swap",
+  preload: true,
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#1a1a1a",
+};
 
 export const metadata: Metadata = {
   title: {
@@ -64,6 +73,11 @@ export default function RootLayout({
   return (
     <html lang="nl">
       <head>
+        {/* Preconnect to external origins for faster loading */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://cdn.sanity.io" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <OrganizationSchema />
         <WebsiteSchema />
       </head>

@@ -1,6 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Compression
+  compress: true,
+
+  // Optimize production builds
+  productionBrowserSourceMaps: false,
+
+  // Image optimization
   images: {
     remotePatterns: [
       {
@@ -12,6 +19,37 @@ const nextConfig: NextConfig = {
         hostname: "cdn.sanity.io",
       },
     ],
+    // Modern formats for smaller file sizes
+    formats: ['image/avif', 'image/webp'],
+    // Optimize device sizes
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // Minimize image processing time
+    minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year
+  },
+
+  // Headers for caching
+  async headers() {
+    return [
+      {
+        source: '/:all*(svg|jpg|jpeg|png|webp|avif|gif|ico|woff|woff2)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
   },
 
   // SEO Redirects: oude URLs → nieuwe URLs (301 permanent)
