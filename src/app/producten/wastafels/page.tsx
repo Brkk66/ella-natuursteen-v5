@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Check } from "lucide-react";
+import { ProductNav } from "@/components/ProductNav";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -268,6 +269,8 @@ export default function WastafelsPage() {
             </motion.div>
           </div>
         </section>
+
+        <ProductNav currentProduct="Wastafels" />
       </main>
       <Footer />
     </>
