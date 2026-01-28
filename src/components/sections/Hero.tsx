@@ -6,13 +6,34 @@ import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { useRef } from "react";
 
-const usps = [
+// Default values (huidige content)
+const defaultUsps = [
   "Gratis adviesgesprek",
   "Eigen montage",
-  "30 jaar ervaring",
+  "25 jaar ervaring",
 ];
 
-export function Hero() {
+interface HeroProps {
+  subtitle?: string;
+  title?: string;
+  titleAccent?: string;
+  description?: string;
+  primaryButton?: string;
+  secondaryButton?: string;
+  usps?: string[];
+  backgroundImage?: string;
+}
+
+export function Hero({
+  subtitle = "Sinds 1994",
+  title = "Ella Natuursteen",
+  titleAccent = "& Maatwerk",
+  description = "Waar uw droominterieur werkelijkheid wordt. Van marmer tot graniet — exclusief voor u vervaardigd.",
+  primaryButton = "Maak een afspraak",
+  secondaryButton = "Bekijk onze projecten",
+  usps = defaultUsps,
+  backgroundImage = "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=2940&auto=format&fit=crop",
+}: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -27,7 +48,7 @@ export function Hero() {
       {/* Background Image with Parallax */}
       <motion.div style={{ y }} className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=2940&auto=format&fit=crop"
+          src={backgroundImage}
           alt="Luxe keuken met natuursteen aanrechtblad"
           fill
           priority
@@ -49,7 +70,7 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <span className="inline-block text-gold text-xs sm:text-sm lg:text-base tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-4 sm:mb-6">
-                Sinds 1994
+                {subtitle}
               </span>
             </motion.div>
 
@@ -60,9 +81,9 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-white font-serif leading-[1.1] mb-4 sm:mb-6"
             >
-              Ella Natuursteen
+              {title}
               <br />
-              <span className="text-gold">&amp; Maatwerk</span>
+              <span className="text-gold">{titleAccent}</span>
             </motion.h1>
 
             {/* Description */}
@@ -72,8 +93,7 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-base sm:text-lg md:text-xl text-white/80 mb-6 sm:mb-8 max-w-lg leading-relaxed"
             >
-              Waar uw droominterieur werkelijkheid wordt.
-              Van marmer tot graniet — exclusief voor u vervaardigd.
+              {description}
             </motion.p>
 
             {/* CTA Buttons */}
@@ -87,14 +107,14 @@ export function Hero() {
                 href="/contact"
                 className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 bg-gold text-white text-sm tracking-wide hover:bg-gold-dark transition-all duration-300 rounded-full"
               >
-                Maak een afspraak
+                {primaryButton}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/projecten"
                 className="inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 bg-white/10 backdrop-blur-sm text-white text-sm tracking-wide border border-white/30 hover:bg-white hover:text-stone transition-all duration-300 rounded-full"
               >
-                Bekijk onze projecten
+                {secondaryButton}
               </Link>
             </motion.div>
           </div>

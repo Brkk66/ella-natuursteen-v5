@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Lato } from "next/font/google";
 import "./globals.css";
+import { OrganizationSchema, WebsiteSchema } from "@/components/StructuredData";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -16,18 +17,43 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Ella Natuursteen | Tijdloze Luxe in Natuursteen",
+  title: {
+    default: "Ella Natuursteen | Specialist in Natuursteen Alblasserdam",
+    template: "%s | Ella Natuursteen",
+  },
   description:
-    "Maatwerk natuursteen voor keuken, badkamer en interieur. Ontdek ons assortiment marmer, graniet, keramiek en composiet.",
+    "Al 25 jaar specialist in maatwerk natuursteen voor keuken, badkamer en interieur. Bezoek onze 600m² showroom in Alblasserdam.",
   keywords: [
     "natuursteen",
+    "keukenblad",
     "marmer",
     "graniet",
-    "keukenblad",
-    "badkamer",
-    "maatwerk",
-    "Rotterdam",
+    "composiet",
+    "keramiek",
+    "Alblasserdam",
+    "tegels",
+    "aanrechtblad",
   ],
+  authors: [{ name: "Ella Natuursteen" }],
+  creator: "Ella Natuursteen",
+  metadataBase: new URL("https://www.ellanatuursteen.nl"),
+  openGraph: {
+    type: "website",
+    locale: "nl_NL",
+    siteName: "Ella Natuursteen",
+    title: "Ella Natuursteen | Specialist in Natuursteen",
+    description: "Al 25 jaar specialist in maatwerk natuursteen. Bezoek onze showroom in Alblasserdam.",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://www.ellanatuursteen.nl",
+  },
 };
 
 export default function RootLayout({
@@ -37,6 +63,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="nl">
+      <head>
+        <OrganizationSchema />
+        <WebsiteSchema />
+      </head>
       <body className={`${playfair.variable} ${lato.variable}`}>
         {children}
       </body>

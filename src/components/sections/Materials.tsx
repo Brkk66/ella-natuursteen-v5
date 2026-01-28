@@ -5,7 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-const materials = [
+// Default values
+const defaultMaterials = [
   {
     title: "Natuursteen",
     subtitle: "Marmer, Graniet, Hardsteen",
@@ -32,7 +33,31 @@ const materials = [
   },
 ];
 
-export function Materials() {
+interface MaterialItem {
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  href: string;
+  color: string;
+}
+
+interface MaterialsProps {
+  subtitle?: string;
+  title?: string;
+  description?: string;
+  materials?: MaterialItem[];
+}
+
+export function Materials({
+  subtitle = "Ons Assortiment",
+  title = "Onze Materialen",
+  description = "Ontdek het materiaal dat perfect bij uw project past.",
+  materials = defaultMaterials,
+}: MaterialsProps) {
+  // Use provided materials or fallback to defaults
+  const displayMaterials = materials && materials.length > 0 ? materials : defaultMaterials;
+
   return (
     <section className="py-16 sm:py-20 lg:py-32 bg-cream overflow-hidden">
       <div className="container mx-auto px-5 sm:px-6 lg:px-12">
@@ -45,19 +70,19 @@ export function Materials() {
           className="text-center mb-10 sm:mb-16"
         >
           <span className="inline-block text-gold text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4">
-            Ons Assortiment
+            {subtitle}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-stone mb-3 sm:mb-4">
-            Onze Materialen
+            {title}
           </h2>
           <p className="text-stone-light text-sm sm:text-base max-w-2xl mx-auto">
-            Ontdek het materiaal dat perfect bij uw project past.
+            {description}
           </p>
         </motion.div>
 
         {/* Materials Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {materials.map((material, index) => (
+          {displayMaterials.map((material, index) => (
             <motion.div
               key={material.title}
               initial={{ opacity: 0, y: 50 }}

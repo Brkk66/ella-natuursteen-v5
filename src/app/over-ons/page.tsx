@@ -42,7 +42,7 @@ const values = [
 ];
 
 const milestones = [
-  "Meer dan 30 jaar ervaring",
+  "Meer dan 25 jaar ervaring",
   "Eigen werkplaats in Alblasserdam",
   "Showroom van 600m²",
   "Persoonlijk advies aan huis",
@@ -99,10 +99,10 @@ export default function OverOnsPage() {
                   Wie wij zijn
                 </motion.p>
                 <motion.h2 variants={fadeInUp} className="text-3xl sm:text-4xl font-serif text-stone mb-6">
-                  Passie voor natuursteen sinds 1990
+                  Passie voor natuursteen sinds 2000
                 </motion.h2>
                 <motion.p variants={fadeInUp} className="text-stone-light leading-relaxed mb-4">
-                  Ella Natuursteen is al meer dan 30 jaar dé specialist in natuursteen voor keuken, badkamer en interieur. Wat begon als een klein familiebedrijf is uitgegroeid tot een begrip in de regio.
+                  Ella Natuursteen is al meer dan 25 jaar dé specialist in natuursteen voor keuken, badkamer en interieur. Wat begon als een klein familiebedrijf is uitgegroeid tot een begrip in de regio.
                 </motion.p>
                 <motion.p variants={fadeInUp} className="text-stone-light leading-relaxed mb-6">
                   Vanuit onze werkplaats en showroom in Alblasserdam bedienen we zowel particulieren als professionals. Of het nu gaat om een luxe keukenblad, een stijlvolle badkamer of een unieke vloer – wij maken het mogelijk.
@@ -135,7 +135,7 @@ export default function OverOnsPage() {
                   />
                 </div>
                 <div className="absolute -bottom-6 -left-6 bg-gold text-white p-6 rounded-xl shadow-lg">
-                  <span className="text-4xl font-serif font-bold">30+</span>
+                  <span className="text-4xl font-serif font-bold">25+</span>
                   <span className="block text-sm">jaar ervaring</span>
                 </div>
               </motion.div>

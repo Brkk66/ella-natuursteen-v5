@@ -6,13 +6,36 @@ import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { useRef } from "react";
 
-const features = [
-  "Volop inspiratie",
-  "Exclusieve materialen",
+// Default values
+const defaultFeatures = [
+  "Volledig op maat gemaakt",
+  "Keuze uit 100+ materialen",
   "Vakkundige montage",
 ];
 
-export function FeaturedProject() {
+interface FeaturedProjectProps {
+  badge?: string;
+  title?: string;
+  titleAccent?: string;
+  description?: string;
+  features?: string[];
+  primaryButton?: string;
+  secondaryButton?: string;
+  statsValue?: string;
+  statsLabel?: string;
+}
+
+export function FeaturedProject({
+  badge = "Maatwerk",
+  title = "Uw droomproject in",
+  titleAccent = "natuursteen",
+  description = "Van een unieke eettafel tot een luxe keukenblad — wij maken het volledig op maat. Vertel ons uw wensen en wij realiseren het.",
+  features = defaultFeatures,
+  primaryButton = "Start uw project",
+  secondaryButton = "Keukens op maat",
+  statsValue = "500+",
+  statsLabel = "Tevreden klanten",
+}: FeaturedProjectProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -20,6 +43,9 @@ export function FeaturedProject() {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
+  // Use provided features or fallback to defaults
+  const displayFeatures = features && features.length > 0 ? features : defaultFeatures;
 
   return (
     <section ref={containerRef} className="py-16 sm:py-20 lg:py-32 bg-stone relative overflow-hidden">
@@ -37,21 +63,21 @@ export function FeaturedProject() {
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-gold/10 rounded-full mb-4 sm:mb-6">
                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gold rounded-full"></span>
-                <span className="text-gold text-xs sm:text-sm font-medium">Nieuwe editie</span>
+                <span className="text-gold text-xs sm:text-sm font-medium">{badge}</span>
               </div>
 
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif text-stone mb-3 sm:mb-4 leading-tight">
-                Laat je inspireren door ons
-                <span className="text-gold"> lookbook</span>
+                {title}
+                <span className="text-gold"> {titleAccent}</span>
               </h2>
 
               <p className="text-stone-light text-sm sm:text-base mb-6 sm:mb-8 leading-relaxed">
-                Vraag gratis ons exclusieve natuursteen lookbook aan! Laat je inspireren door prachtige projecten.
+                {description}
               </p>
 
               {/* Features */}
               <div className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
-                {features.map((feature) => (
+                {displayFeatures.map((feature) => (
                   <div key={feature} className="flex items-center gap-2 sm:gap-3">
                     <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-gold/10 flex items-center justify-center">
                       <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-gold" />
@@ -63,17 +89,17 @@ export function FeaturedProject() {
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link
-                  href="/lookbook"
+                  href="/offerte"
                   className="group inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-gold text-white text-sm rounded-full hover:bg-gold-dark transition-colors"
                 >
-                  Ontvang ons lookbook
+                  {primaryButton}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
-                  href="/contact"
+                  href="/keukens"
                   className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 text-stone text-sm hover:text-gold transition-colors"
                 >
-                  Maak een afspraak
+                  {secondaryButton}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -126,8 +152,8 @@ export function FeaturedProject() {
               className="absolute top-[60%] sm:top-[65%] right-[5%] bg-white p-3 sm:p-5 rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl"
             >
               <div className="text-center">
-                <span className="block text-2xl sm:text-3xl font-serif text-gold">500+</span>
-                <span className="text-[10px] sm:text-xs text-stone-light uppercase tracking-wider">Tevreden klanten</span>
+                <span className="block text-2xl sm:text-3xl font-serif text-gold">{statsValue}</span>
+                <span className="text-[10px] sm:text-xs text-stone-light uppercase tracking-wider">{statsLabel}</span>
               </div>
             </motion.div>
           </div>

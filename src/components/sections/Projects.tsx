@@ -5,7 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-const projects = [
+// Default values
+const defaultProjects = [
   {
     title: "Familie Bakker",
     location: "Rotterdam",
@@ -32,7 +33,29 @@ const projects = [
   },
 ];
 
-export function Projects() {
+interface ProjectItem {
+  title: string;
+  location: string;
+  image: string;
+  href: string;
+}
+
+interface ProjectsProps {
+  subtitle?: string;
+  title?: string;
+  projects?: ProjectItem[];
+  buttonText?: string;
+}
+
+export function Projects({
+  subtitle = "Inspiratie",
+  title = "Binnenkijken bij onze klanten",
+  projects = defaultProjects,
+  buttonText = "Bekijk alle binnenkijkers",
+}: ProjectsProps) {
+  // Use provided projects or fallback to defaults
+  const displayProjects = projects && projects.length > 0 ? projects : defaultProjects;
+
   return (
     <section className="py-16 sm:py-20 lg:py-32 bg-sand overflow-hidden">
       <div className="container mx-auto px-5 sm:px-6 lg:px-12">
@@ -45,17 +68,17 @@ export function Projects() {
           className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
           <span className="inline-block text-gold text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4">
-            Inspiratie
+            {subtitle}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-stone mb-3 sm:mb-4">
-            Binnenkijken bij onze klanten
+            {title}
           </h2>
         </motion.div>
 
         {/* Projects Scroll */}
         <div className="relative -mx-5 sm:-mx-6 lg:mx-0">
           <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-6 sm:pb-8 snap-x snap-mandatory scrollbar-hide px-5 sm:px-6 lg:px-0">
-            {projects.map((project, index) => (
+            {displayProjects.map((project, index) => (
               <motion.div
                 key={project.title}
                 initial={{ opacity: 0, y: 30 }}
@@ -107,7 +130,7 @@ export function Projects() {
             href="/projecten"
             className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gold text-white text-sm rounded-full hover:bg-gold-dark transition-colors"
           >
-            Bekijk alle binnenkijkers
+            {buttonText}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>

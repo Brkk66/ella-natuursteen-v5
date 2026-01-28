@@ -2,27 +2,60 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { MapPin, Phone, Calendar } from "lucide-react";
+import { MapPin, Phone, Calendar, LucideIcon } from "lucide-react";
 
-const contactOptions = [
+// Icon mapping
+const iconMap: Record<string, LucideIcon> = {
+  mappin: MapPin,
+  phone: Phone,
+  calendar: Calendar,
+};
+
+// Default values
+const defaultOptions = [
   {
-    icon: MapPin,
+    icon: "mappin",
     title: "Bezoek showroom",
     description: "Bekijk onze collectie",
   },
   {
-    icon: Phone,
+    icon: "phone",
     title: "Bel voor advies",
     description: "Vrijblijvend advies",
   },
   {
-    icon: Calendar,
+    icon: "calendar",
     title: "Op locatie",
     description: "Wij komen bij u langs",
   },
 ];
 
-export function CTA() {
+interface OptionItem {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface CTAProps {
+  subtitle?: string;
+  title?: string;
+  titleAccent?: string;
+  description?: string;
+  options?: OptionItem[];
+  buttonText?: string;
+}
+
+export function CTA({
+  subtitle = "Neem Contact Op",
+  title = "Klaar om uw project",
+  titleAccent = "te bespreken?",
+  description = "Plan een afspraak of vraag vrijblijvend advies aan.",
+  options = defaultOptions,
+  buttonText = "Plan een afspraak",
+}: CTAProps) {
+  // Use provided options or fallback to defaults
+  const displayOptions = options && options.length > 0 ? options : defaultOptions;
+
   return (
     <section className="py-16 sm:py-20 lg:py-32 bg-stone relative overflow-hidden">
       {/* Background Pattern */}
@@ -45,15 +78,15 @@ export function CTA() {
             transition={{ duration: 0.8 }}
           >
             <span className="inline-block text-gold text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4">
-              Neem Contact Op
+              {subtitle}
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-white mb-4 sm:mb-6 leading-tight">
-              Klaar om uw project
+              {title}
               <br />
-              <span className="text-gold">te bespreken?</span>
+              <span className="text-gold">{titleAccent}</span>
             </h2>
             <p className="text-white/70 text-sm sm:text-base max-w-2xl mx-auto mb-8 sm:mb-12">
-              Plan een afspraak of vraag vrijblijvend advies aan.
+              {description}
             </p>
           </motion.div>
 
@@ -65,16 +98,19 @@ export function CTA() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="grid grid-cols-3 gap-3 sm:gap-6 mb-8 sm:mb-12"
           >
-            {contactOptions.map((option, index) => (
-              <div
-                key={index}
-                className="p-3 sm:p-5 lg:p-6 bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl hover:bg-white/10 transition-colors duration-300"
-              >
-                <option.icon className="w-6 h-6 sm:w-8 sm:h-8 text-gold mx-auto mb-2 sm:mb-4" />
-                <h3 className="text-white font-medium text-xs sm:text-sm lg:text-base mb-1 sm:mb-2">{option.title}</h3>
-                <p className="text-white/60 text-[10px] sm:text-xs lg:text-sm hidden sm:block">{option.description}</p>
-              </div>
-            ))}
+            {displayOptions.map((option, index) => {
+              const IconComponent = iconMap[option.icon] || MapPin;
+              return (
+                <div
+                  key={index}
+                  className="p-3 sm:p-5 lg:p-6 bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl hover:bg-white/10 transition-colors duration-300"
+                >
+                  <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 text-gold mx-auto mb-2 sm:mb-4" />
+                  <h3 className="text-white font-medium text-xs sm:text-sm lg:text-base mb-1 sm:mb-2">{option.title}</h3>
+                  <p className="text-white/60 text-[10px] sm:text-xs lg:text-sm hidden sm:block">{option.description}</p>
+                </div>
+              );
+            })}
           </motion.div>
 
           {/* CTA Button */}
@@ -88,7 +124,7 @@ export function CTA() {
               href="/contact"
               className="inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 bg-gold text-white text-sm tracking-wide hover:bg-gold-dark transition-all duration-300 rounded-full"
             >
-              Plan een afspraak
+              {buttonText}
             </Link>
           </motion.div>
         </div>

@@ -5,17 +5,17 @@ import { Mail, Phone, MapPin, Instagram, Facebook, Linkedin } from "lucide-react
 
 const quickLinks = [
   { href: "/over-ons", label: "Over Ons" },
-  { href: "/diensten", label: "Diensten" },
-  { href: "/materialen", label: "Materialen" },
-  { href: "/projecten", label: "Projecten" },
+  { href: "/materialen/natuursteen", label: "Materialen" },
+  { href: "/tegels/keramische-tegels", label: "Tegels" },
+  { href: "/aanbiedingen", label: "Aanbiedingen" },
   { href: "/contact", label: "Contact" },
 ];
 
 const services = [
-  { href: "/diensten/keukenbladen", label: "Keukenbladen" },
-  { href: "/diensten/badkamers", label: "Badkamers" },
-  { href: "/diensten/vloeren-wanden", label: "Vloeren & Wanden" },
-  { href: "/diensten/maatwerk", label: "Maatwerk" },
+  { href: "/producten/keukenbladen", label: "Keukenbladen" },
+  { href: "/producten/wastafels", label: "Wastafels" },
+  { href: "/producten/vensterbanken", label: "Vensterbanken" },
+  { href: "/keukens", label: "Keukens" },
 ];
 
 export function Footer() {
@@ -118,29 +118,29 @@ export function Footer() {
             <ul className="space-y-3 sm:space-y-4">
               <li>
                 <a
-                  href="tel:+31101234567"
+                  href="tel:+31788795045"
                   className="flex items-center gap-2 sm:gap-3 text-white/70 hover:text-gold transition-colors text-xs sm:text-sm"
                 >
                   <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold" />
-                  +31 (0)10 123 4567
+                  078 879 5045
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:info@ellanatuurteen.nl"
+                  href="mailto:info@ellanatuursteen.nl"
                   className="flex items-center gap-2 sm:gap-3 text-white/70 hover:text-gold transition-colors text-xs sm:text-sm"
                 >
                   <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold" />
-                  info@ellanatuurteen.nl
+                  info@ellanatuursteen.nl
                 </a>
               </li>
               <li>
                 <div className="flex items-start gap-2 sm:gap-3 text-white/70 text-xs sm:text-sm">
                   <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold mt-0.5" />
                   <span>
-                    Steenweg 123
+                    Edisonweg 8 B
                     <br />
-                    3012 AB Rotterdam
+                    2952 AD Alblasserdam
                   </span>
                 </div>
               </li>

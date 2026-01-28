@@ -1,0 +1,9 @@
+# Ella Natuursteen - robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.ellanatuursteen.nl/sitemap.xml
+
+# Blokkeer admin/studio
+Disallow: /studio

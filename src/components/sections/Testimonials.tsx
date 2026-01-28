@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 
-const testimonials = [
+// Default values
+const defaultTestimonials = [
   {
     name: "Familie De Vries",
     location: "Rotterdam",
@@ -46,7 +47,29 @@ const itemVariants = {
   },
 };
 
-export function Testimonials() {
+interface TestimonialItem {
+  name: string;
+  location: string;
+  rating: number;
+  text: string;
+}
+
+interface TestimonialsProps {
+  subtitle?: string;
+  title?: string;
+  description?: string;
+  testimonials?: TestimonialItem[];
+}
+
+export function Testimonials({
+  subtitle = "Tevreden Klanten",
+  title = "Wat Klanten Zeggen",
+  description = "Ontdek waarom onze klanten voor Ella Natuursteen kiezen.",
+  testimonials = defaultTestimonials,
+}: TestimonialsProps) {
+  // Use provided testimonials or fallback to defaults
+  const displayTestimonials = testimonials && testimonials.length > 0 ? testimonials : defaultTestimonials;
+
   return (
     <section className="py-16 sm:py-20 lg:py-32 bg-sand">
       <div className="container mx-auto px-5 sm:px-6 lg:px-12">
@@ -59,13 +82,13 @@ export function Testimonials() {
           className="text-center mb-10 sm:mb-16"
         >
           <span className="inline-block text-gold text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4">
-            Tevreden Klanten
+            {subtitle}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-stone mb-3 sm:mb-4">
-            Wat Klanten Zeggen
+            {title}
           </h2>
           <p className="text-stone-light text-sm sm:text-base max-w-2xl mx-auto">
-            Ontdek waarom onze klanten voor Ella Natuursteen kiezen.
+            {description}
           </p>
         </motion.div>
 
@@ -77,7 +100,7 @@ export function Testimonials() {
           viewport={{ once: true, margin: "-50px" }}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
         >
-          {testimonials.map((testimonial, index) => (
+          {displayTestimonials.map((testimonial, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
