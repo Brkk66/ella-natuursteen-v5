@@ -150,6 +150,8 @@ export async function getAanbiedingen() {
   )
 }
 
+// ============ PAGINA'S ============
+
 // Homepage
 export async function getHomepage() {
   return client.fetch(
@@ -245,5 +247,194 @@ export async function getHomepage() {
       },
       ctaButton
     }`
+  )
+}
+
+// Over Ons
+export async function getOverOns() {
+  return client.fetch(
+    `*[_type == "overOns"][0] {
+      // Hero
+      heroSubtitel,
+      heroTitel,
+      heroAfbeelding,
+      // Intro
+      introSubtitel,
+      introTitel,
+      introParagraaf1,
+      introParagraaf2,
+      introAfbeelding,
+      introJarenErvaring,
+      introHighlights,
+      // Waarden
+      waardenSubtitel,
+      waardenTitel,
+      waarden[] {
+        icoon,
+        titel,
+        beschrijving
+      },
+      // Showroom
+      showroomSubtitel,
+      showroomTitel,
+      showroomParagraaf1,
+      showroomParagraaf2,
+      showroomKnopTekst,
+      showroomAfbeeldingen,
+      // CTA
+      ctaTitel,
+      ctaBeschrijving,
+      ctaPrimaireKnop,
+      ctaSecundaireKnop
+    }`
+  )
+}
+
+// Contact
+export async function getContact() {
+  return client.fetch(
+    `*[_type == "contact"][0] {
+      // Hero
+      heroSubtitel,
+      heroTitel,
+      // Formulier
+      formulierSubtitel,
+      formulierTitel,
+      formulierBeschrijving,
+      // Contactgegevens
+      contactSubtitel,
+      contactTitel,
+      telefoon,
+      mobiel,
+      email,
+      adres,
+      openingstijden,
+      googleMapsUrl,
+      // CTA
+      ctaTitel,
+      ctaBeschrijving,
+      ctaKnopTekst
+    }`
+  )
+}
+
+// Keukens
+export async function getKeukens() {
+  return client.fetch(
+    `*[_type == "keukens"][0] {
+      // Hero
+      heroSubtitel,
+      heroTitel,
+      heroBeschrijving,
+      heroAfbeelding,
+      // Intro
+      introSubtitel,
+      introTitel,
+      introParagraaf1,
+      introParagraaf2,
+      introAfbeelding,
+      introStatsTekst,
+      introStatsLabel,
+      introHighlights,
+      // Proces
+      procesSubtitel,
+      procesTitel,
+      procesStappen[] {
+        icoon,
+        titel,
+        beschrijving
+      },
+      // Voordelen
+      voordelenSubtitel,
+      voordelenTitel,
+      voordelenBeschrijving,
+      voordelenLijst,
+      voordelenKnopTekst,
+      voordelenAfbeeldingen,
+      // CTA
+      ctaTitel,
+      ctaBeschrijving,
+      ctaPrimaireKnop,
+      ctaSecundaireKnop
+    }`
+  )
+}
+
+// Bouwsector
+export async function getBouwsector() {
+  return client.fetch(
+    `*[_type == "bouwsector"][0] {
+      // Hero
+      heroSubtitel,
+      heroTitel,
+      heroBeschrijving,
+      heroAfbeelding,
+      // Intro
+      introSubtitel,
+      introTitel,
+      introParagraaf1,
+      introParagraaf2,
+      introKnopTekst,
+      introAfbeelding,
+      // Voordelen
+      voordelenSubtitel,
+      voordelenTitel,
+      voordelen[] {
+        icoon,
+        titel,
+        beschrijving
+      },
+      // Diensten
+      dienstenSubtitel,
+      dienstenTitel,
+      dienstenBeschrijving,
+      dienstenLijst,
+      dienstenKnopTekst,
+      dienstenAfbeeldingen,
+      // CTA
+      ctaTitel,
+      ctaBeschrijving,
+      ctaPrimaireKnop,
+      ctaSecundaireKnop
+    }`
+  )
+}
+
+// Product Pagina
+export async function getProductPagina(productType: string) {
+  return client.fetch(
+    `*[_type == "productPagina" && productType == $productType][0] {
+      productType,
+      // Hero
+      heroTitel,
+      heroSubtitel,
+      heroAfbeelding,
+      // Intro
+      introSubtitel,
+      introTitel,
+      introBeschrijving,
+      introAfbeelding,
+      introKenmerken,
+      introPrimaireKnop,
+      introSecundaireKnop,
+      // Materialen
+      materialenSubtitel,
+      materialenTitel,
+      materialen[] {
+        naam,
+        beschrijving,
+        link
+      },
+      // Galerij
+      galerijSubtitel,
+      galerijTitel,
+      galerijAfbeeldingen,
+      // CTA
+      ctaTitel,
+      ctaBeschrijving,
+      ctaPrimaireKnop,
+      ctaSecundaireKnop
+    }`,
+    { productType }
   )
 }

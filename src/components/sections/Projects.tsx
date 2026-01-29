@@ -127,7 +127,7 @@ export function Projects({
           className="text-center mt-4 sm:mt-8"
         >
           <Link
-            href="/projecten"
+            href="/producten/keukenbladen"
             className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gold text-white text-sm rounded-full hover:bg-gold-dark transition-colors"
           >
             {buttonText}

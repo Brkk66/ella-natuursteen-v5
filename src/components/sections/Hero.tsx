@@ -115,7 +115,7 @@ export function Hero({
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                href="/projecten"
+                href="/producten/keukenbladen"
                 className="inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 bg-white/10 backdrop-blur-sm text-white text-sm tracking-wide border border-white/30 hover:bg-white hover:text-stone transition-all duration-300 rounded-full"
               >
                 {secondaryButton}
